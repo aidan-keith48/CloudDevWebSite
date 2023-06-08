@@ -13,8 +13,9 @@ body {
 }
 
 
-.carInfo, .inspectorInfo, .driverInfo{
-    display: block;
+
+.carInfo, .inspectorInfo, .driverInfo, .rentalInfo, .returnInfo{
+    display: block;    
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -25,64 +26,25 @@ body {
     text-align: center;
 }
 
-.rentalInfo,
-.returnInfo {
-    display: block;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(255, 255, 255, 0.8); /* Adjust the alpha value (0.8) */
-    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
+
+
+.table {
+    margin-top: 300px; /* Adjust the value as needed */
 }
 
-
-.carInfo {
-    position: relative;
-    top: 50px;
-    margin-top: 50px;
-    overflow: auto;
+.column {
+    width: 150px; /* Fixed width for each column */
 }
 
-.inspectorInfo {
-    position: relative;
-    top: 50px;
-    margin-top: 10px;
-    overflow: auto;
-}
-
-.driverInfo {
-    position: relative;
-    top: 50px;
-    margin-top: 10px;
-    overflow: auto;
-}
-
-.rentalInfo {
-   
-    position: relative;
-    top: 50px;
-    margin-top: 25px;
-    overflow: auto;
-}
-
-.returnInfo {
-    position: relative;
-    top: 35px;
-    margin-top: 50px;
-    overflow: auto;
-    width: 300px;
-}
-
-.line {
-    flex-grow: 1;
-    height: 1px;
+.table-row {
+    height: 200px;
     display: flex;
-    justify-content: flex-start;
-    background-color: black;
+    align-items: center;
+    justify-content: center;
 }
+
+
+
 
 
 
