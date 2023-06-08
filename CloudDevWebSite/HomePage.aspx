@@ -5,6 +5,15 @@
     width: 508px;
     height: 250px;
 }
+
+        table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: none;
+}
+
     </style>
     <main>
         <table class="table">
@@ -57,7 +66,7 @@
                 </td>
             </tr>
             <tr class="table-row">
-                <td class="column" style="position: relative; left: 50%; transform: translateX(-50%); top: 90px;">
+                <td class="column" style="position: relative; left: 50%; transform: translateX(-50%); top: 110px;">
                     <div class="returnInfo">
                         <h2 id="returnTitle">Return Information:</h2>
                         <p>Click the link below to create a new return to be entered in the database
