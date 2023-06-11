@@ -103,6 +103,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="App_Data\RentYouRide.mdf" />
+    <Content Include="App_Data\RentYouRide_log.ldf">
+      <DependentUpon>RentYouRide.mdf</DependentUpon>
+    </Content>
     <Content Include="CarPage.aspx" />
     <Content Include="returnalpagePic.css" />
     <Content Include="rentalpagePic.css" />
@@ -315,7 +319,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
