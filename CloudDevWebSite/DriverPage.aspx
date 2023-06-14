@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="driverpagePic.css">
     <p>
 
-        <asp:GridView ID="Table" runat="server" AutoGenerateColumns="False" DataKeyNames="driverID" DataSourceID="driverDataSource" OnSelectedIndexChanged="GridView_SelectedIndexChanged">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="driverID" DataSourceID="SqlDataSource2">
             <Columns>
                 <asp:BoundField DataField="driverID" HeaderText="driverID" InsertVisible="False" ReadOnly="True" SortExpression="driverID" />
                 <asp:BoundField DataField="driverName" HeaderText="driverName" SortExpression="driverName" />
@@ -13,12 +13,15 @@
                 <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="driverDataSource" runat="server" ConnectionString="<%$ ConnectionStrings:TheRentYouRideConnectionString %>" SelectCommand="SELECT * FROM [Driver]"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TheRentYouRideConnectionString %>" SelectCommand="SELECT Driver.* FROM Driver"></asp:SqlDataSource>
 
     </p>
     <p>
 
-        <asp:FormView ID="FormView1" runat="server" DataKeyNames="driverID" DataSourceID="SqlDataSource1">
+        
+       
+
+        <asp:FormView ID="FormView1" runat="server" DataKeyNames="driverID" DataSourceID="formviewDataSource">
             <EditItemTemplate>
                 driverID:
                 <asp:Label ID="driverIDLabel1" runat="server" Text='<%# Eval("driverID") %>' />
@@ -70,17 +73,62 @@
                 mobile:
                 <asp:Label ID="mobileLabel" runat="server" Text='<%# Bind("mobile") %>' />
                 <br />
+
                 <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
+
             </ItemTemplate>
         </asp:FormView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:TheRentYouRideConnectionString %>" SelectCommand="SELECT driverID, driverName, driverAddress, email, mobile FROM Driver WHERE (driverID = @driverID)">
-            <SelectParameters>
+       
+
+        <asp:SqlDataSource ID="formviewDataSource" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:TheRentYouRideConnectionString %>" SelectCommand="SELECT driverID, driverName, driverAddress, email, mobile FROM Driver WHERE (driverID = @driverID)" InsertCommand="INSERT INTO [Driver] ([driverName], [driverAddress], [email], [mobile]) VALUES (@driverName, @driverAddress, @email, @mobile)" OldValuesParameterFormatString="original_{0}" UpdateCommand="UPDATE [Driver] SET [driverName] = @driverName, [driverAddress] = @driverAddress, [email] = @email, [mobile] = @mobile WHERE [driverID] = @original_driverID AND (([driverName] = @original_driverName) OR ([driverName] IS NULL AND @original_driverName IS NULL)) AND (([driverAddress] = @original_driverAddress) OR ([driverAddress] IS NULL AND @original_driverAddress IS NULL)) AND (([email] = @original_email) OR ([email] IS NULL AND @original_email IS NULL)) AND (([mobile] = @original_mobile) OR ([mobile] IS NULL AND @original_mobile IS NULL))">
+             <SelectParameters>
                 <asp:ControlParameter ControlID="GridView1" Name="driverID" PropertyName="SelectedValue" />
             </SelectParameters>
+            <InsertParameters>
+                <asp:Parameter Name="driverName" Type="String" />
+                <asp:Parameter Name="driverAddress" Type="String" />
+                <asp:Parameter Name="email" Type="String" />
+                <asp:Parameter Name="mobile" Type="String" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="driverName" Type="String" />
+                <asp:Parameter Name="driverAddress" Type="String" />
+                <asp:Parameter Name="email" Type="String" />
+                <asp:Parameter Name="mobile" Type="String" />
+                <asp:Parameter Name="original_driverID" Type="Int32" />
+                <asp:Parameter Name="original_driverName" Type="String" />
+                <asp:Parameter Name="original_driverAddress" Type="String" />
+                <asp:Parameter Name="original_email" Type="String" />
+                <asp:Parameter Name="original_mobile" Type="String" />
+            </UpdateParameters>
         </asp:SqlDataSource>
 
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
-
     </p>
+    <div>
+
+        <table style="width:100%;">
+            <tr>
+                <td>
+                    <asp:Label ID="Label2" runat="server" Text="Driver ID:"></asp:Label>
+                </td>
+                <td>
+
+                    <asp:TextBox ID="deleteTxt" runat="server"></asp:TextBox>
+
+                </td>                
+                <td>
+                    <asp:Label ID="errorDelete" runat="server" Text="" Width="200"></asp:Label>
+                </td>
+            </tr>   
+            <tr>
+                <td>
+                    <asp:Button ID="deleteBtn" runat="server" Text="Delete Driver Record" Width="170px" />
+                </td>
+            </tr>
+        </table>
+
+    </div>
 </asp:Content>
+
+

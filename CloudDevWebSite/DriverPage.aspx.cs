@@ -16,15 +16,14 @@ namespace CloudDevWebSite
 
         }
 
-        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void FormView1_PageIndexChanging(object sender, FormViewPageEventArgs e)
         {
 
         }
-    
+
+        protected void GridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
