@@ -1,58 +1,87 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="DriverPage.aspx.cs" Inherits="CloudDevWebSite.DriverPage" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <link rel="stylesheet" type="text/css" href="driverpagePic.css">
+
+    <table style="width: 100%;">
+        <tr>
+            <td>&nbsp;</td>
+            <td>
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="driverID" DataSourceID="SqlDataSource2">
+                    <Columns>
+                        <asp:BoundField DataField="driverID" HeaderText="driverID" InsertVisible="False" ReadOnly="True" SortExpression="driverID" />
+                        <asp:BoundField DataField="driverName" HeaderText="driverName" SortExpression="driverName" />
+                        <asp:BoundField DataField="driverAddress" HeaderText="driverAddress" SortExpression="driverAddress" />
+                        <asp:BoundField DataField="email" HeaderText="email" SortExpression="email" />
+                        <asp:BoundField DataField="mobile" HeaderText="mobile" SortExpression="mobile" />
+                        <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
+                    </Columns>
+                </asp:GridView>
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TheRentYouRideConnectionString %>" SelectCommand="SELECT Driver.* FROM Driver"></asp:SqlDataSource>
+
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
     <p>
 
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="driverID" DataSourceID="SqlDataSource2">
-            <Columns>
-                <asp:BoundField DataField="driverID" HeaderText="driverID" InsertVisible="False" ReadOnly="True" SortExpression="driverID" />
-                <asp:BoundField DataField="driverName" HeaderText="driverName" SortExpression="driverName" />
-                <asp:BoundField DataField="driverAddress" HeaderText="driverAddress" SortExpression="driverAddress" />
-                <asp:BoundField DataField="email" HeaderText="email" SortExpression="email" />
-                <asp:BoundField DataField="mobile" HeaderText="mobile" SortExpression="mobile" />
-                <asp:CommandField ButtonType="Button" ShowSelectButton="True" />
-            </Columns>
-        </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TheRentYouRideConnectionString %>" SelectCommand="SELECT Driver.* FROM Driver"></asp:SqlDataSource>
 
-    </p>
-    <p>
 
-        
-       
 
         <asp:FormView ID="FormView1" runat="server" DataKeyNames="driverID" DataSourceID="formviewDataSource">
             <EditItemTemplate>
                 driverID:
-                <asp:Label ID="driverIDLabel1" runat="server" Text='<%# Eval("driverID") %>' />
+        <asp:Label ID="driverIDLabel1" runat="server" Text='<%# Eval("driverID") %>' />
                 <br />
                 driverName:
-                <asp:TextBox ID="driverNameTextBox" runat="server" Text='<%# Bind("driverName") %>' />
+        <asp:TextBox ID="driverNameTextBox" runat="server" Text='<%# Bind("driverName") %>' />
+                <asp:RequiredFieldValidator ID="driverNameValidator" runat="server" ControlToValidate="driverNameTextBox" ErrorMessage="Please enter driverName" />
                 <br />
                 driverAddress:
-                <asp:TextBox ID="driverAddressTextBox" runat="server" Text='<%# Bind("driverAddress") %>' />
+        <asp:TextBox ID="driverAddressTextBox" runat="server" Text='<%# Bind("driverAddress") %>' />
+                <asp:RequiredFieldValidator ID="driverAddressValidator" runat="server" ControlToValidate="driverAddressTextBox" ErrorMessage="Please enter driverAddress" />
                 <br />
                 email:
-                <asp:TextBox ID="emailTextBox" runat="server" Text='<%# Bind("email") %>' />
+        <asp:TextBox ID="emailTextBox" runat="server" Text='<%# Bind("email") %>' />
+                <asp:RequiredFieldValidator ID="emailValidator" runat="server" ControlToValidate="emailTextBox" ErrorMessage="Please enter email" />
+                <asp:RegularExpressionValidator ID="emailFormatValidator" runat="server" ControlToValidate="emailTextBox" ErrorMessage="Please enter a valid email address" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
                 <br />
                 mobile:
-                <asp:TextBox ID="mobileTextBox" runat="server" Text='<%# Bind("mobile") %>' />
+        <asp:TextBox ID="mobileTextBox" runat="server" Text='<%# Bind("mobile") %>' />
+                <asp:RequiredFieldValidator ID="mobileValidator" runat="server" ControlToValidate="mobileTextBox" ErrorMessage="Please enter mobile" />
+                <asp:RegularExpressionValidator ID="mobileFormatValidator" runat="server" ControlToValidate="mobileTextBox" ErrorMessage="Please enter a valid mobile number" ValidationExpression="^\d{10}$" />
                 <br />
                 <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
                 &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
             </EditItemTemplate>
             <InsertItemTemplate>
                 driverName:
-                <asp:TextBox ID="driverNameTextBox" runat="server" Text='<%# Bind("driverName") %>' />
+        <asp:TextBox ID="driverNameTextBox" runat="server" Text='<%# Bind("driverName") %>' />
+                <asp:RequiredFieldValidator ID="driverNameValidator" runat="server" ControlToValidate="driverNameTextBox" ErrorMessage="Please enter driverName" />
                 <br />
                 driverAddress:
-                <asp:TextBox ID="driverAddressTextBox" runat="server" Text='<%# Bind("driverAddress") %>' />
+        <asp:TextBox ID="driverAddressTextBox" runat="server" Text='<%# Bind("driverAddress") %>' />
+                <asp:RequiredFieldValidator ID="driverAddressValidator" runat="server" ControlToValidate="driverAddressTextBox" ErrorMessage="Please enter driverAddress" />
                 <br />
                 email:
-                <asp:TextBox ID="emailTextBox" runat="server" Text='<%# Bind("email") %>' />
+        <asp:TextBox ID="emailTextBox" runat="server" Text='<%# Bind("email") %>' />
+                <asp:RequiredFieldValidator ID="emailValidator" runat="server" ControlToValidate="emailTextBox" ErrorMessage="Please enter email" />
+                <asp:RegularExpressionValidator ID="emailFormatValidator" runat="server" ControlToValidate="emailTextBox" ErrorMessage="Please enter a valid email address" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
                 <br />
                 mobile:
-                <asp:TextBox ID="mobileTextBox" runat="server" Text='<%# Bind("mobile") %>' />
+        <asp:TextBox ID="mobileTextBox" runat="server" Text='<%# Bind("mobile") %>' />
+                <asp:RequiredFieldValidator ID="mobileValidator" runat="server" ControlToValidate="mobileTextBox" ErrorMessage="Please enter mobile" />
+                <asp:RegularExpressionValidator ID="mobileFormatValidator" runat="server" ControlToValidate="mobileTextBox" ErrorMessage="Please enter a valid mobile number" ValidationExpression="^\d{10}$" />
                 <br />
                 <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
                 &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
@@ -79,10 +108,10 @@
 
             </ItemTemplate>
         </asp:FormView>
-       
+
 
         <asp:SqlDataSource ID="formviewDataSource" runat="server" ConflictDetection="CompareAllValues" ConnectionString="<%$ ConnectionStrings:TheRentYouRideConnectionString %>" SelectCommand="SELECT driverID, driverName, driverAddress, email, mobile FROM Driver WHERE (driverID = @driverID)" InsertCommand="INSERT INTO [Driver] ([driverName], [driverAddress], [email], [mobile]) VALUES (@driverName, @driverAddress, @email, @mobile)" OldValuesParameterFormatString="original_{0}" UpdateCommand="UPDATE [Driver] SET [driverName] = @driverName, [driverAddress] = @driverAddress, [email] = @email, [mobile] = @mobile WHERE [driverID] = @original_driverID AND (([driverName] = @original_driverName) OR ([driverName] IS NULL AND @original_driverName IS NULL)) AND (([driverAddress] = @original_driverAddress) OR ([driverAddress] IS NULL AND @original_driverAddress IS NULL)) AND (([email] = @original_email) OR ([email] IS NULL AND @original_email IS NULL)) AND (([mobile] = @original_mobile) OR ([mobile] IS NULL AND @original_mobile IS NULL))">
-             <SelectParameters>
+            <SelectParameters>
                 <asp:ControlParameter ControlID="GridView1" Name="driverID" PropertyName="SelectedValue" />
             </SelectParameters>
             <InsertParameters>
@@ -107,7 +136,7 @@
     </p>
     <div>
 
-        <table style="width:100%;">
+        <table style="width: 100%;">
             <tr>
                 <td>
                     <asp:Label ID="Label2" runat="server" Text="Driver ID:"></asp:Label>
@@ -116,14 +145,14 @@
 
                     <asp:TextBox ID="deleteTxt" runat="server"></asp:TextBox>
 
-                </td>                
+                </td>
                 <td>
                     <asp:Label ID="errorDelete" runat="server" Text="" Width="200"></asp:Label>
                 </td>
-            </tr>   
+            </tr>
             <tr>
                 <td>
-                    <asp:Button ID="deleteBtn" runat="server" Text="Delete Driver Record" Width="170px" />
+                    <asp:Button ID="deleteBtn" runat="server" Text="Delete Driver Record" Width="170px" OnClick="deleteBtn_Click" />
                 </td>
             </tr>
         </table>

@@ -4,13 +4,7 @@
     font-family: 'poppins',sans-serif;
 }
 
-body {
-    background-image: url("carPage.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-}
+
 
 .gridView {
     display: block;

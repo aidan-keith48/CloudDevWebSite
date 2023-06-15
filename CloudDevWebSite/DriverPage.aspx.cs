@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CloudDevWebSite.Controller;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -24,6 +25,23 @@ namespace CloudDevWebSite
         protected void GridView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void deleteBtn_Click(object sender, EventArgs e)
+        {
+            DPHelper helper = new DPHelper();
+            string driverID = deleteTxt.Text;
+            if(driverID.Equals(""))
+            {
+                errorDelete.Text = "Please enter the driverID first before pressing the button";
+            }
+            else
+            {
+                errorDelete.Text = "";
+                helper.AlterDriverTableNOCHECK();
+                helper.driverDelete(driverID);
+                helper.AterDriverTableCHECK();
+            }
         }
     }
 }

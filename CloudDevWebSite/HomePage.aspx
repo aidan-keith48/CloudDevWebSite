@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <style>
         body {
-            background-image: url("homepagePicture.jpeg");
+            background-image: url("homepagePicture.jpg");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
